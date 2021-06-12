@@ -8,7 +8,7 @@ public class TicTacToeGame
     public void initializeBoard()
     {
     	//inbuilt method
-    	Arrays.fill(board, '_');
+    	Arrays.fill(board, ' ');
     }
     //assigning values for computer and player
     public static char chooseUserLetter(Scanner userInput)
@@ -19,12 +19,22 @@ public class TicTacToeGame
     //displaying board
     public void viewBoard()
     {
-    	for(int i=0;i<9;i++)
-    	{
-    		if(i%3 == 0)
-    			System.out.println("");
-    		System.out.print(board[i]+" ");
-    	}
+    	System.out.println("\n" + board[1]+" | "+board[2]+" | "+board[3]);
+        System.out.println("----------");
+        System.out.println(board[4]+" | "+board[5]+" | "+board[6]);
+        System.out.println("----------");
+        System.out.println(board[7]+" | "+board[8]+" | "+board[9]);
+        
+    }
+    public void insertInLocation(char userLetter)
+    {
+    	Scanner sc = new Scanner(System.in);
+    	System.out.println("Enter location for user input between 1 and 9");
+    	int loc = sc.nextInt();
+    	if(board[loc]==' ')
+    		board[loc]= userLetter;
+    	else
+    		System.out.println("cell is not empty");
     }
     public static void main(String args[])
     {
@@ -37,5 +47,7 @@ public class TicTacToeGame
     	char computerLetter=(userLetter=='X')?'O':'X';
     	System.out.println("user="+userLetter+" "+"computer="+computerLetter);
     	t.viewBoard();//displaying board
+    	t.insertInLocation(userLetter);//taking for user
+    	t.viewBoard();
     }
 }
