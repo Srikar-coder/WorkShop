@@ -8,34 +8,34 @@ public class TicTacToeGame
     public void initializeBoard()
     {
     	//inbuilt method
-    	Arrays.fill(board, ' ');
+    	Arrays.fill(board, '_');
     }
     //assigning values for computer and player
-    public static char playerAndComputerChoice(char player,char computer)
+    public static char chooseUserLetter(Scanner userInput)
     {
-    	if(player == 'o')
-    		computer='x';
-    	else
-    		computer='o';
-    	return computer;
-    	
+    	System.out.println("Choose your letter:");
+    	return userInput.next().toUpperCase().charAt(0);
+    }
+    //displaying board
+    public void viewBoard()
+    {
+    	for(int i=0;i<9;i++)
+    	{
+    		if(i%3 == 0)
+    			System.out.println("");
+    		System.out.print(board[i]+" ");
+    	}
     }
     public static void main(String args[])
     {
-    	Scanner sc = new Scanner(System.in);
+    	Scanner userInput = new Scanner(System.in);
     	TicTacToeGame t = new TicTacToeGame();
     	//creating board
     	t.initializeBoard();
     	System.out.println("Board initalized");
-    	System.out.println("Enter value for player x or o");
-    	char player = sc.next().charAt(0);
-    	char computer = ' ';
-    	if(player == 'o' || player == 'x')
-    	computer=playerAndComputerChoice(player,computer);//giving alternate value
-    	else
-    		System.out.println("Invalid input");
-    	System.out.println("player choice is "+player);
-    	System.out.println("computer choice is "+computer);
-    	
+    	char userLetter = chooseUserLetter(userInput);
+    	char computerLetter=(userLetter=='X')?'O':'X';
+    	System.out.println("user="+userLetter+" "+"computer="+computerLetter);
+    	t.viewBoard();//displaying board
     }
 }
